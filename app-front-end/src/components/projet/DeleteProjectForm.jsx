@@ -41,7 +41,7 @@ const DeleteProjectForm = () => {
       <h3>Suppression</h3>
 
       <form action="#" onSubmit={handleDeleteSubmission}>
-        <div>
+        <div >
           <label htmlFor="titre">titre</label>
           <label htmlFor="details">details</label>
           <label htmlFor="etat">etat</label>
@@ -50,8 +50,12 @@ const DeleteProjectForm = () => {
         </div>
 
         <div>
+          <div>
           <input type="text" name="titre" ref={titreRef} disabled />
+          </div>
+          <div>
           <input type="text" name="details" ref={detailsRef} disabled />
+          </div>
 
           <select name="etat" ref={etatRef} disabled>
             <option value="">état du projet</option>

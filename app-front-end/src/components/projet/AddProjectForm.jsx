@@ -3,6 +3,8 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Projet } from "../../model/Projet";
 import { addProjet, setFormMode } from "./projetSlice";
+import style from "../../shared/modal/Style.module.css"
+
 
 const AddProjectForm = () => {
   const dispatch = useDispatch();
@@ -53,7 +55,7 @@ const AddProjectForm = () => {
       <h3>Ajouter</h3>
 
       <form action="#" onSubmit={handleAddSubmission}>
-        <div>
+        <div className={style.divLabels}>
           <label htmlFor="titre">titre</label>
           <label htmlFor="details">details</label>
           <label htmlFor="etat">etat</label>
@@ -61,11 +63,14 @@ const AddProjectForm = () => {
           <label htmlFor="dateDeFin">dateDeFin</label>
         </div>
 
-        <div>
+        <div className={style.divInputs}>
+          <div>
           <input type="text" name="titre" ref={titreRef} />
+          </div>
+          <div>
           <input type="text" name="details" ref={detailsRef} />
-          {/* <input type="text" name="etat" ref={etatRef} /> */}
-
+          </div>
+          <div>
           <select name="etat" ref={etatRef}>
             <option value="">état du projet</option>
             <option value="Non débuté">Non débuté</option>
@@ -73,9 +78,13 @@ const AddProjectForm = () => {
             <option value="En attente">En attente</option>
             <option value="Terminé">Terminé</option>
           </select>
-
+          </div>
+          <div>
           <input type="text" name="dateDeDebut" ref={dateDeDebutRef} />
+          </div>
+          <div>
           <input type="text" name="dateDeFin" ref={dateDeFinRef} />
+          </div>
         </div>
 
         <div>

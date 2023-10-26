@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import style from "./Modal.module.css"
+import style from "./Style.module.css"
 
 const Modal = (props) => {
 
