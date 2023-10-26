@@ -29,9 +29,12 @@ const projetSlice = createSlice({
             if(foundProjet){
                 state.projets=state.projets.filter(projet=>projet.id!==action.payload.id)
             }
+        },
+        setProjects:(state,action)=>{
+            state.projets=action.payload
         }
 
     }
 })
-export const {setFormMode,setSelectedProjet,addProjet,editProjet,deleteProjet} = projetSlice.actions
+export const {setFormMode,setSelectedProjet,setProjects,addProjet,editProjet,deleteProjet} = projetSlice.actions
 export default projetSlice.reducer

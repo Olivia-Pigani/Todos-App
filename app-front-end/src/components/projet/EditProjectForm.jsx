@@ -2,11 +2,12 @@ import axios from "axios"
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Projet } from "../../model/Projet";
-import { addProjet, setFormMode } from "./projetSlice";
+import { editProjet, setFormMode } from "./projetSlice";
 
-const AddProjectForm = () => {
+const EditProjectForm = () => {
   const dispatch = useDispatch();
   const formMode = useSelector((state) => state.projets.formMode);
+    const selectedProjet = useSelector(state=>state.projets.selectedProjet)
 
   const titreRef = useRef();
   const detailsRef = useRef();
@@ -14,8 +15,8 @@ const AddProjectForm = () => {
   const dateDeDebutRef = useRef();
   const dateDeFinRef = useRef();
 
-  // on ajoute un nouveau projet
-  const handleAddSubmission = async (e) => {
+  // on edit un projet
+  const handleEditSubmission = async (e) => {
     e.preventDefault();
     const newProjet = new Projet(
       titreRef.current.value,
@@ -27,8 +28,8 @@ const AddProjectForm = () => {
 
     if (newProjet !== undefined) {
       try {
-        const response = await axios.post(
-          "http://127.0.0.1:3000/projets",
+        const response = await axios.put(
+            `http://127.0.0.1:3000/projets/${selectedProjet.id}.json`,
           newProjet
         );
         if (response.status !== 201) {
@@ -40,7 +41,7 @@ const AddProjectForm = () => {
         const data = await response.json()
 
         // l'id est généré par le back-end
-        dispatch(addProjet(newProjet))
+        dispatch(editProjet(newProjet))
         dispatch(setFormMode(""))
 
 
@@ -52,9 +53,9 @@ const AddProjectForm = () => {
 
   return (
     <>
-      <h3>Ajouter</h3>
+      <h3>Mise à jour</h3>
 
-      <form action="#" onSubmit={handleAddSubmission}>
+      <form action="#" onSubmit={handleEditSubmission}>
         <div>
           <label htmlFor="titre">titre</label>
           <label htmlFor="details">details</label>
@@ -72,10 +73,10 @@ const AddProjectForm = () => {
         </div>
 
         <div>
-          <button>Ajout</button>
+          <button>Mise à jour</button>
         </div>
       </form>
     </>
   );
 };
-export default AddProjectForm;
+export default EditProjectForm;

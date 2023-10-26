@@ -1,12 +1,23 @@
-const ProjetDisplay = () => {
-    return(
-    
-    <>
-    <h1>Project Tracker Pro</h1>
+import axios from "axios";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
-    <h3>Liste des projets</h3>
-    </>
-    
-    )
-}
-export default ProjetDisplay
+const ProjetDisplay = (props) => {
+  const projet = props.projet;
+  const dispatch = useDispatch();
+
+
+
+  return (
+    <div>
+      <h5>{projet.titre}</h5>
+      <hr />
+      <p>{projet.etat}</p>
+    </div>
+
+
+
+  );
+};
+
+export default ProjetDisplay;
