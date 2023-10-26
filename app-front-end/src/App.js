@@ -1,14 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import AddProjectForm from "./components/projet/AddProjectForm";
-import DeleteProjectForm from "./components/projet/DeleteProjectForm";
-import EditProjectForm from "./components/projet/EditProjectForm";
 import ProjetDisplay from "./components/projet/ProjetDisplay";
 import { useEffect, useRef } from "react";
 import axios from "axios";
-import { setFiltrage, setProjects } from "./components/projet/projetSlice";
+import { setFiltrage, setProjects, setShowModal } from "./components/projet/projetSlice";
+
 
 function App() {
-  const formMode = useSelector((state) => state.projets.formMode);
   const projets = useSelector((state) => state.projets.projets);
   const projectFiltered = useSelector((state) => state.projets.projectFiltered);
   const dispatch = useDispatch();
@@ -31,8 +29,7 @@ function App() {
       ></input>
 
       <AddProjectForm />
-      <DeleteProjectForm />
-      <EditProjectForm />
+ 
 
       {console.log(projets)}
 
@@ -50,7 +47,17 @@ function App() {
           // on affiche
           .map((projet) => <ProjetDisplay key={projet.id} projet={projet} />)
       )}
+
+
+
+
+
     </div>
+
+    
+
+
+
   );
 }
 

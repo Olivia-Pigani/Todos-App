@@ -67,7 +67,16 @@ const EditProjectForm = () => {
         <div>
           <input type="text" name="titre" ref={titreRef} />
           <input type="text" name="details" ref={detailsRef} />
-          <input type="text" name="etat" ref={etatRef} />
+
+          <select name="etat" ref={etatRef}>
+            <option value="">état du projet</option>
+            <option value="Non débuté">Non débuté</option>
+            <option value="En cours">En cours</option>
+            <option value="En attente">En attente</option>
+            <option value="Terminé">Terminé</option>
+          </select>
+
+
           <input type="text" name="dateDeDebut" ref={dateDeDebutRef} />
           <input type="text" name="dateDeFin" ref={dateDeFinRef} />
         </div>

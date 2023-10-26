@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Projet } from "../../model/Projet";
@@ -37,13 +37,11 @@ const AddProjectForm = () => {
           );
         }
 
-        const data = await response.json()
+        const data = await response.json();
 
         // l'id est généré par le back-end
-        dispatch(addProjet(newProjet))
-        dispatch(setFormMode(""))
-
-
+        dispatch(addProjet(newProjet));
+        dispatch(setFormMode(""));
       } catch (err) {
         console.log(err.message);
       }
@@ -66,7 +64,16 @@ const AddProjectForm = () => {
         <div>
           <input type="text" name="titre" ref={titreRef} />
           <input type="text" name="details" ref={detailsRef} />
-          <input type="text" name="etat" ref={etatRef} />
+          {/* <input type="text" name="etat" ref={etatRef} /> */}
+
+          <select name="etat" ref={etatRef}>
+            <option value="">état du projet</option>
+            <option value="Non débuté">Non débuté</option>
+            <option value="En cours">En cours</option>
+            <option value="En attente">En attente</option>
+            <option value="Terminé">Terminé</option>
+          </select>
+
           <input type="text" name="dateDeDebut" ref={dateDeDebutRef} />
           <input type="text" name="dateDeFin" ref={dateDeFinRef} />
         </div>

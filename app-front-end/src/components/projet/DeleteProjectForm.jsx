@@ -52,7 +52,15 @@ const DeleteProjectForm = () => {
         <div>
           <input type="text" name="titre" ref={titreRef} disabled />
           <input type="text" name="details" ref={detailsRef} disabled />
-          <input type="text" name="etat" ref={etatRef} disabled />
+
+          <select name="etat" ref={etatRef} disabled>
+            <option value="">état du projet</option>
+            <option value="Non débuté">Non débuté</option>
+            <option value="En cours">En cours</option>
+            <option value="En attente">En attente</option>
+            <option value="Terminé">Terminé</option>
+          </select>
+
           <input type="text" name="dateDeDebut" ref={dateDeDebutRef} disabled />
           <input type="text" name="dateDeFin" ref={dateDeFinRef}  disabled/>
         </div>
