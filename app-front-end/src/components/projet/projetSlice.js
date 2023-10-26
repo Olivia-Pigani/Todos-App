@@ -5,12 +5,19 @@ const projetSlice = createSlice({
     initialState:{
         projets:[],
         formMode:"",
-        selectedProjet:null
+        selectedProjet:null,
+        projectFiltered:""
     },
     reducers:{
         setFormMode:(state,action)=>{
             state.formMode=action.payload
             console.log(state.formMode);
+        },
+        setProjects:(state,action)=>{
+            state.projets=action.payload
+        },
+        setFiltrage:(state,action)=>{
+            state.projectFiltered=action.payload
         },
         setSelectedProjet : (state, action) => {
             state.selectedProjet = action.payload
@@ -30,11 +37,10 @@ const projetSlice = createSlice({
                 state.projets=state.projets.filter(projet=>projet.id!==action.payload.id)
             }
         },
-        setProjects:(state,action)=>{
-            state.projets=action.payload
-        }
+
+       
 
     }
 })
-export const {setFormMode,setSelectedProjet,setProjects,addProjet,editProjet,deleteProjet} = projetSlice.actions
+export const {setFormMode,setSelectedProjet,setProjects,addProjet,editProjet,deleteProjet,setFiltrage} = projetSlice.actions
 export default projetSlice.reducer

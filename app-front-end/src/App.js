@@ -3,13 +3,14 @@ import AddProjectForm from "./components/projet/AddProjectForm";
 import DeleteProjectForm from "./components/projet/DeleteProjectForm";
 import EditProjectForm from "./components/projet/EditProjectForm";
 import ProjetDisplay from "./components/projet/ProjetDisplay";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import axios from "axios";
-import { setProjects } from "./components/projet/projetSlice";
+import { setFiltrage, setProjects } from "./components/projet/projetSlice";
 
 function App() {
   const formMode = useSelector((state) => state.projets.formMode);
   const projets = useSelector((state) => state.projets.projets);
+  const projectFiltered = useSelector((state) => state.projets.projectFiltered);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,6 +23,13 @@ function App() {
     <div className="App">
       <h1>Project Tracker Pro</h1>
 
+      <input
+        type="text"
+        placeholder="filtrage"
+        value={projectFiltered}
+        onChange={(e) => dispatch(setFiltrage(e.target.value))}
+      ></input>
+
       <AddProjectForm />
       <DeleteProjectForm />
       <EditProjectForm />
@@ -33,9 +41,14 @@ function App() {
       {projets.length === 0 ? (
         <p>Il n'y a pas de projets !</p>
       ) : (
-        projets.map((projet) => (
-          <ProjetDisplay key={projet.id} projet={projet} />
-        ))
+        projets
+          // on filtre
+          .filter((projet) =>
+            projet.etat.toLowerCase().includes(projectFiltered.toLowerCase())
+          )
+
+          // on affiche
+          .map((projet) => <ProjetDisplay key={projet.id} projet={projet} />)
       )}
     </div>
   );

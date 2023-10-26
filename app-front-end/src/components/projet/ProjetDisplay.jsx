@@ -10,9 +10,11 @@ const ProjetDisplay = (props) => {
 
   return (
     <div>
-      <h5>{projet.titre}</h5>
+      <h3>Titre : {projet.titre}</h3>
+      <p>état :{projet.etat}</p>
       <hr />
-      <p>{projet.etat}</p>
+
+      
     </div>
 
 
